@@ -1,10 +1,10 @@
 <p align="center">
-  <a href="https://www.docker.com/" target="blank"><img src="https://seekvectorlogo.com/docker-vector-logo-svg/" width="320" alt="Docker Logo" /></a>
+  <a href="https://www.docker.com/" target="blank"><img src="https://www.docker.com/sites/default/files/d8/2019-07/horizontal-logo-monochromatic-white.png" width="320" alt="Docker Logo" /></a>
 </p>
 <br>
 <br>
 <p align="center">
-  <a href="https://konghq.com/kong" target="blank"><img src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2018/08/kong-combination-mark-colors.svg" width="320" alt="Nest Logo" /></a>
+  <a href="https://konghq.com/kong" target="blank"><img src="https://2tjosk2rxzc21medji3nfn1g-wpengine.netdna-ssl.com/wp-content/uploads/2018/08/kong-combination-mark-colors.svg" width="320" alt="Kong Logo" /></a>
 </p>
 
 ## Descrição
