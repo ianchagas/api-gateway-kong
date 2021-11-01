@@ -2,6 +2,7 @@ version: '3.7'
 
 volumes:
   kong_data: {}
+  keycloak_data: {}
 
 networks:
   kong-net:
@@ -62,6 +63,7 @@ services:
       KONG_PROXY_ACCESS_LOG: /dev/stdout
       KONG_PROXY_ERROR_LOG: /dev/stderr
       KONG_PG_PASSWORD: kong
+      KONG_PLUGINS: bundled,oidc
     
     networks:
       - kong-net
@@ -131,3 +133,34 @@ services:
       - db
     ports:
       - "1337:1337"
+
+  keycloak-db:
+    image: postgres:13-alpine
+    # volumes: 
+    #   - keycloak-datastore:/var/lib/postgresql/data
+    networks:
+      - kong-net
+    ports:
+      - "25432:5432"
+    environment:
+      POSTGRES_DB:       keycloak
+      POSTGRES_USER:     keycloak
+      POSTGRES_PASSWORD: password
+
+  keycloak:
+    image: jboss/keycloak:15.0.1
+    depends_on:
+      - keycloak-db
+    networks:
+      - kong-net
+    ports:
+      - "8180:8080"
+    environment:
+      DB_VENDOR:   POSTGRES
+      DB_ADDR:     keycloak-db
+      DB_PORT:     5432
+      DB_DATABASE: keycloak
+      DB_USER:     keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_USER:     admin
+      KEYCLOAK_PASSWORD: admin

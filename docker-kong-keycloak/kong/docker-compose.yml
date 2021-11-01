@@ -9,7 +9,7 @@ networks:
 
 services:
   kong-migrations:
-    image: "kong:2.3.2-alpine"
+    image: "kong/kong:2.6.0"
     command: kong migrations bootstrap
     depends_on:
       - db
@@ -27,7 +27,7 @@ services:
         condition: on-failure
 
   kong-migrations-up:
-    image: "kong:2.3.2-alpine"
+    image: "kong/kong:2.6.0"
     command: kong migrations up && kong migrations finish
     depends_on:
       - db
@@ -45,8 +45,7 @@ services:
         condition: on-failure
 
   kong:
-    build:
-      context: ./
+    build: .
     image: kong-oidc:latest
     user: "kong"
     depends_on:
@@ -132,34 +131,3 @@ services:
       - db
     ports:
       - "1337:1337"
-
-  keycloak-db:
-    image: postgres:13-alpine
-    # volumes: 
-    #   - keycloak-datastore:/var/lib/postgresql/data
-    networks:
-      - kong-net
-    ports:
-      - "25432:25432"
-    environment:
-      POSTGRES_DB:       keycloak
-      POSTGRES_USER:     keycloak
-      POSTGRES_PASSWORD: password
-
-  keycloak:
-    image: jboss/keycloak:15.0.1
-    depends_on:
-      - keycloak-db
-    networks:
-      - kong-net
-    ports:
-      - "8180:8080"
-    environment:
-      DB_VENDOR:   POSTGRES
-      DB_ADDR:     keycloak-db
-      DB_PORT:     25432
-      DB_DATABASE: keycloak
-      DB_USER:     keycloak
-      DB_PASSWORD: password
-      KEYCLOAK_USER:     admin
-      KEYCLOAK_PASSWORD: admin
