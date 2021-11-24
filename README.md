@@ -9,12 +9,7 @@
 
 ## Descrição
 
-Criação de um ambiente local para implementação e testes da API Gateway Kong.
-
-O arquivo docker-compose é baseado no repositório https://github.com/codeedu/apigateway-kong do Wesley Williams.
-
-Ao amadurecer dos estudos, gostaria de adicionar serviços de exemplos com NestJS (framework que utilizo) e também o Keycloak com um passo a passo de integração entre Kong e Keycloak.
-
+Criação de um ambiente local para implementação e testes da API Gateway Kong com o Keycloak e Plugin OIDC embutido.
 
 ## Iniciando com o Kong
 
